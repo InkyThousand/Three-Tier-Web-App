@@ -1,1 +1,5 @@
 # Terraform gitignore
+.terraform/
+*.tfstate
+*.tfstate.*
+
