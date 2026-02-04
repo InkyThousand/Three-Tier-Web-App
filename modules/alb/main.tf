@@ -19,15 +19,15 @@ resource "aws_lb_target_group" "app" {
   vpc_id   = var.vpc_id
 
   health_check {
-    enabled             = true
-    healthy_threshold   = 2
-    interval            = 30
-    matcher             = "200"
-    path                = "/"
-    port                = "traffic-port"
-    protocol            = "HTTP"
-    timeout             = 5
-    unhealthy_threshold = 2
+    enabled             = true    # Enable health checks
+    healthy_threshold   = 2       # Number of consecutive successful checks to mark healthy
+    interval            = 30      # Time between health checks (seconds)
+    matcher             = "200"    # HTTP status code that indicates healthy response
+    path                = "/"      # URL path to check for health
+    port                = "traffic-port"  # Use same port as target group traffic
+    protocol            = "HTTP"   # Protocol for health checks
+    timeout             = 5       # Time to wait for response (seconds)
+    unhealthy_threshold = 2       # Number of consecutive failed checks to mark unhealthy
   }
 
   tags = {
@@ -35,14 +35,14 @@ resource "aws_lb_target_group" "app" {
   }
 }
 
-# Listener
+# Listener - Defines how ALB handles incoming requests
 resource "aws_lb_listener" "app" {
-  load_balancer_arn = aws_lb.main.arn
-  port              = "80"
-  protocol          = "HTTP"
+  load_balancer_arn = aws_lb.main.arn  # Which ALB this listener belongs to
+  port              = "80"             # Port to listen on for incoming traffic
+  protocol          = "HTTP"           # Protocol to use (HTTP/HTTPS)
 
   default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.app.arn
+    type             = "forward"                    # Action type: forward traffic
+    target_group_arn = aws_lb_target_group.app.arn # Where to send the traffic
   }
 }
