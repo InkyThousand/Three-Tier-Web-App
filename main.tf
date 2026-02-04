@@ -21,3 +21,13 @@ module "alb" {
   security_group_id = module.security_groups.alb_security_group_id
   environment       = var.environment
 }
+
+module "asg_app" {
+  source = "./modules/asg_app"
+  
+  vpc_id             = module.vpc.vpc_id
+  private_subnet_ids = module.vpc.private_app_subnet_ids
+  security_group_id  = module.security_groups.app_security_group_id
+  target_group_arn   = module.alb.target_group_arn
+  environment        = var.environment
+}
