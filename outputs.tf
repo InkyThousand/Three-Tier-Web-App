@@ -7,3 +7,7 @@ output "public_subnet_ids" {
   description = "IDs of the public subnets"
   value       = module.vpc.public_subnet_ids
 }
+output "application_url" {
+  description = "URL to access the application"
+  value       = "http://${module.alb.alb_dns_name}"
+}

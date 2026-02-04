@@ -31,3 +31,12 @@ module "asg_app" {
   target_group_arn   = module.alb.target_group_arn
   environment        = var.environment
 }
+module "rds" {
+  source = "./modules/rds"
+  
+  vpc_id             = module.vpc.vpc_id
+  private_subnet_ids = module.vpc.private_db_subnet_ids
+  security_group_id  = module.security_groups.db_security_group_id
+  environment        = var.environment
+  db_password        = var.db_password
+}
