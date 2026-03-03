@@ -2,5 +2,5 @@
 .terraform/
 *.tfstate
 *.tfstate.*
-
+Code_Playground.pdf
 q-dev-chat-2026-02-04.md

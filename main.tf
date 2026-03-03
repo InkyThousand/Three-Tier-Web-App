@@ -22,14 +22,14 @@ module "alb" {
   environment       = var.environment
 }
 
-module "asg_app" {
-  source = "./modules/asg_app"
+module "ecs" {
+  source = "./modules/ecs"
   
-  vpc_id             = module.vpc.vpc_id
-  private_subnet_ids = module.vpc.private_app_subnet_ids
-  security_group_id  = module.security_groups.app_security_group_id
-  target_group_arn   = module.alb.target_group_arn
-  environment        = var.environment
+  aws_region            = var.aws_region
+  private_subnet_ids    = module.vpc.private_app_subnet_ids
+  app_security_group_id = module.security_groups.app_security_group_id
+  target_group_arn      = module.alb.target_group_arn
+  alb_listener          = module.alb.listener
 }
 module "rds" {
   source = "./modules/rds"
