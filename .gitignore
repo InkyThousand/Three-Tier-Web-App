@@ -1,6 +1,16 @@
-# Terraform gitignore
-.terraform/
+# Terraform files
 *.tfstate
 *.tfstate.*
-Code_Playground.pdf
-q-dev-chat-2026-02-04.md
+.terraform/
+.terraform.lock.hcl
+terraform.tfvars
+
+# Environment files
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store

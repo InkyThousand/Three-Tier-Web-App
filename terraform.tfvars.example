@@ -1,1 +1,11 @@
 # Example variable values - copy to terraform.tfvars
+
+# AWS Region where resources will be deployed
+aws_region = "us-east-1"
+
+# Environment name (dev, staging, prod)
+environment = "dev"
+
+# Database master password (REQUIRED - change this!)
+# Must be at least 8 characters with letters and numbers
+db_password = "ChangeMe123!"
