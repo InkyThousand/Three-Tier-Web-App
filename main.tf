@@ -22,6 +22,16 @@ module "alb" {
   environment       = var.environment
 }
 
+module "vpc_endpoints" {
+  source = "./modules/vpc_endpoints"
+  
+  vpc_id                   = module.vpc.vpc_id
+  vpc_cidr                 = module.vpc.vpc_cidr
+  aws_region               = var.aws_region
+  private_subnet_ids       = module.vpc.private_app_subnet_ids
+  private_route_table_ids  = module.vpc.private_route_table_ids
+}
+
 module "ecs" {
   source = "./modules/ecs"
   
@@ -30,6 +40,8 @@ module "ecs" {
   app_security_group_id = module.security_groups.app_security_group_id
   target_group_arn      = module.alb.target_group_arn
   alb_listener          = module.alb.listener
+  
+  depends_on = [module.vpc_endpoints]
 }
 module "rds" {
   source = "./modules/rds"

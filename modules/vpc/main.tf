@@ -64,24 +64,6 @@ resource "aws_subnet" "private_db" {
   }
 }
 
-# NAT Gateway
-resource "aws_eip" "nat" {
-  domain = "vpc"
-  
-  tags = {
-    Name = "${var.environment}-nat-eip"
-  }
-}
-
-resource "aws_nat_gateway" "main" {
-  allocation_id = aws_eip.nat.id
-  subnet_id     = aws_subnet.public[0].id
-
-  tags = {
-    Name = "${var.environment}-nat-gateway"
-  }
-}
-
 # Route Tables
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
@@ -98,11 +80,6 @@ resource "aws_route_table" "public" {
 
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.main.id
-
-  route {
-    cidr_block     = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.main.id
-  }
 
   tags = {
     Name = "${var.environment}-private-rt"
