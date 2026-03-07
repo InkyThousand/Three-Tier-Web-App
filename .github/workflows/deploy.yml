@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 env:
-  AWS_REGION: eu-central-1
+  AWS_REGION: us-east-1
   ECR_REPOSITORY: three-tier-app
   ECS_CLUSTER: three-tier-cluster
   ECS_SERVICE: three-tier-service
