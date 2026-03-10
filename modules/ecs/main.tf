@@ -1,5 +1,6 @@
 resource "aws_ecr_repository" "app" {
   name = "three-tier-app"
+  force_delete        = true  # Deletes images on destroy
 }
 
 resource "aws_ecs_cluster" "main" {
