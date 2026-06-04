@@ -36,10 +36,10 @@ graph TD
 ### Tier 2: Application Layer (ECS Fargate)
 - **ECS Fargate cluster** with containerized applications in private subnets
 - Runs Nginx web server in Docker containers
-- Serverless compute - no EC2 instances to manage
 - Auto-scaling based on demand
 - Container images stored in Amazon ECR
 - Only accessible through the load balancer
+- Auto-scaling for ECS (CPU/memory target tracking)
 
 ### Tier 3: Database Layer (RDS)
 - **MySQL RDS instance** in private database subnets
@@ -200,10 +200,8 @@ To avoid ongoing charges:
 
 ## Next Steps
 
-- Add auto-scaling policies for ECS service
 - Implement blue/green deployments
 - Set up RDS read replicas for scaling
 - Implement secrets management with AWS Secrets Manager
 - Add WAF for enhanced security
 - Configure custom domain with Route 53 and ACM
-- Add 

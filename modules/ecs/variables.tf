@@ -27,3 +27,27 @@ variable "desired_count" {
   type        = number
   default     = 2
 }
+
+variable "autoscaling_min_capacity" {
+  description = "Minimum number of ECS tasks"
+  type        = number
+  default     = 2
+}
+
+variable "autoscaling_max_capacity" {
+  description = "Maximum number of ECS tasks"
+  type        = number
+  default     = 10
+}
+
+variable "cpu_scale_out_threshold" {
+  description = "CPU percent to trigger scale-out"
+  type        = number
+  default     = 70
+}
+
+variable "memory_scale_out_threshold" {
+  description = "Memory percent to trigger scale-out"
+  type        = number
+  default     = 70
+}
