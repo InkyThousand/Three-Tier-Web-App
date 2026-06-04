@@ -9,3 +9,6 @@ environment = "dev"
 # Database master password (REQUIRED - change this!)
 # Must be at least 8 characters with letters and numbers
 db_password = "ChangeMe123!"
+
+# Email address to receive CloudWatch alarm notifications (REQUIRED)
+alarm_email = "your-email@example.com"

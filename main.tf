@@ -52,3 +52,13 @@ module "rds" {
   environment        = var.environment
   db_password        = var.db_password
 }
+
+module "monitoring" {
+  source = "./modules/monitoring"
+
+  environment      = var.environment
+  ecs_cluster_name = module.ecs.ecs_cluster_name
+  ecs_service_name = module.ecs.ecs_service_name
+  rds_identifier   = "${var.environment}-database"
+  alarm_email      = var.alarm_email
+}

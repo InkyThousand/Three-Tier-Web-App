@@ -145,8 +145,8 @@ After initial setup, every push to `main` branch automatically:
 
 - **CloudWatch Logs**: ECS task logs in `/ecs/three-tier-app` log group
 - **ALB Access Logs**: Track incoming requests (optional)
-- **ECS Service Metrics**: CPU, memory, task count
-- **RDS Monitoring**: Database performance metrics
+- **ECS Service Metrics with CloudWatch alarms**: CPU, memory, task count
+- **RDS Monitoring with CloudWatch alarms**: Database performance metrics
 
 ## Clean Up
 
@@ -202,7 +202,6 @@ To avoid ongoing charges:
 
 - Add auto-scaling policies for ECS service
 - Implement blue/green deployments
-- Add application monitoring with CloudWatch alarms
 - Set up RDS read replicas for scaling
 - Implement secrets management with AWS Secrets Manager
 - Add WAF for enhanced security
