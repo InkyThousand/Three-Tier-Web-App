@@ -6,15 +6,25 @@ A AWS 3-tier web application infrastructure built with Terraform and automated w
 
 ```mermaid
 graph TD
-    A[Internet] --> B[ALB<br/>Public Subnets]
+    A[Internet] --> B[Application Load Balancer<br/>Public Subnets]
     B --> C[ECS Fargate Tasks<br/>Private App Subnets]
     C --> D[RDS MySQL<br/>Private DB Subnets]
     
-    subgraph VPC
+    subgraph "VPC (10.0.0.0/16)"
         B
         C
         D
     end
+    
+    subgraph "Security Groups"
+        SG1[ALB SG<br/>Port 80/443]
+        SG2[ECS SG<br/>Port 80]
+        SG3[RDS SG<br/>Port 3306]
+    end
+    
+    B -.-> SG1
+    C -.-> SG2
+    D -.-> SG3
 ```
 
 ### Tier 1: Web Layer (Load Balancer)

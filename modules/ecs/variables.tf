@@ -21,3 +21,9 @@ variable "target_group_arn" {
 variable "alb_listener" {
   description = "ALB listener for dependency"
 }
+
+variable "desired_count" {
+  description = "Desired number of ECS tasks"
+  type        = number
+  default     = 2
+}

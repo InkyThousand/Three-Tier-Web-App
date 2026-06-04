@@ -20,8 +20,9 @@ resource "aws_db_instance" "main" {
   # Storage Configuration
   allocated_storage     = 20
   max_allocated_storage = 100
-  storage_type          = "gp2"
+  storage_type          = "gp3" // General Purpose SSD
   storage_encrypted     = true
+  multi_az              = true // Enable Multi-AZ for high availability
   
   # Database Configuration
   db_name  = "appdb"
@@ -38,8 +39,8 @@ resource "aws_db_instance" "main" {
   maintenance_window     = "sun:04:00-sun:05:00"
   
   # Other Settings
-  skip_final_snapshot = true
-  deletion_protection = false
+  skip_final_snapshot = true // Set to false in production environments
+  deletion_protection = false // Set to true in production environments
   
   tags = {
     Name = "${var.environment}-database"

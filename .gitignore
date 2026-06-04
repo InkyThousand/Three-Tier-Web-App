@@ -9,8 +9,7 @@ terraform.tfvars
 .env
 
 # Local config files with sensitive data
-buged-notifications.local.json
-
+budged-notifications.local.json
 # IDE
 .vscode/
 .idea/
